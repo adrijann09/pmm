@@ -1,0 +1,34 @@
+# ==========================================
+# Vollständiger R-Workflow: CSV einlesen & als Excel speichern
+# ==========================================
+
+# 1. Benötigte Pakete laden (falls noch nicht installiert, einmalig ausführen: 
+# install.packages(c("readr", "dplyr", "writexl")))
+library(readr)
+library(dplyr)
+library(writexl)
+
+# 2. Arbeitsverzeichnis prüfen (zeigt den aktuellen Ordner deines R-Projekts)
+getwd()
+
+# 3. Betriebsdaten als CSV einlesen
+# Passe "betriebsdaten.csv" an den tatsächlichen Dateinamen an.
+dateipfad_csv <- "betriebsdaten.csv"
+betriebsdaten <- read_csv(dateipfad_csv)
+
+# 4. Daten zur Kontrolle anzeigen
+print("--- Erste Zeilen der Daten ---")
+head(betriebsdaten)
+
+print("--- Struktur der Daten ---")
+str(betriebsdaten)
+
+# 5. Optional: Daten bearbeiten / filtern (falls in deinem Schulskept gefragt)
+# Beispiel: Du kannst hier dplyr-Funktionen nutzen, um Daten zu bereinigen.
+# beispiel_gefiltert <- betriebsdaten %>% filter(Umsatz > 1000)
+
+# 6. Als Excel-Datei in das R-Projekt zurückschreiben
+dateipfad_excel <- "betriebsdaten_exportiert.xlsx"
+write_xlsx(betriebsdaten, path = dateipfad_excel)
+
+cat("\n[Erfolg] Die Datei wurde erfolgreich als Excel unter folgendem Pfad gespeichert:", dateipfad_excel, "\n")
